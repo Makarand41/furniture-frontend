@@ -1,92 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import { useParams, useNavigate } from "react-router-dom";
-// import axios from "axios";
-
-// const EditFurniture = () => {
-//   const { id } = useParams();
-//   const navigate = useNavigate();
-
-//   const [form, setForm] = useState({
-//     name: "",
-//     description: "",
-//     quantity: "",
-//     price: "",
-//     status: "",
-//     categoryId: "",
-//   });
-//   const [categories, setCategories] = useState([]);
-//   const [image, setImage] = useState(null);
-//   const [images, setImages] = useState([]);
-
-//   useEffect(() => {
-//     fetchFurniture();
-//     fetchCategories();
-//   }, []);
-
-//   const fetchFurniture = async () => {
-//     const res = await axios.get(`http://localhost:8080/api/furniture/${id}`);
-//     setForm({
-//       name: res.data.name,
-//       description: res.data.description || "",
-//       quantity: res.data.quantity || "",
-//       price: res.data.price || "",
-//       status: res.data.status || "",
-//       categoryId: res.data.category?.id || "",
-//     });
-//   };
-
-//   const fetchCategories = async () => {
-//     const res = await axios.get("http://localhost:1/api/category/all");
-//     setCategories(res.data);
-//   };
-
-//   const handleChange = (e) => {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const data = new FormData();
-//     Object.entries(form).forEach(([key, value]) => data.append(key, value));
-//     if (image) data.append("image", image);
-//     for (const img of images) data.append("images", img);
-
-//     await axios.put(`http://localhost:8080/api/furniture/update/${id}`, data, {
-//       headers: { "Content-Type": "multipart/form-data" },
-//     });
-
-//     alert("Furniture updated successfully!");
-//     navigate("/furniture/list");
-//   };
-
-//   return (
-//     <div>
-//       <h2>Edit Furniture</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input name="name" value={form.name} onChange={handleChange} placeholder="Name" required />
-//         <textarea name="description" value={form.description} onChange={handleChange} placeholder="Description" />
-//         <input type="number" name="quantity" value={form.quantity} onChange={handleChange} placeholder="Quantity" />
-//         <input type="number" name="price" value={form.price} onChange={handleChange} placeholder="Price" />
-//         <input name="status" value={form.status} onChange={handleChange} placeholder="Status" />
-
-//         <select name="categoryId" value={form.categoryId} onChange={handleChange}>
-//           <option value="">Select Category</option>
-//           {categories.map((c) => (
-//             <option key={c.id} value={c.id}>{c.name}</option>
-//           ))}
-//         </select>
-
-//         <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-//         <input type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
-
-//         <button type="submit">Update</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default EditFurniture;
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -156,9 +67,12 @@ const EditFurniture = () => {
     for (const img of images) data.append("images", img);
 
     try {
-      await axios.put(`http://localhost:/api/furniture/update/${id}`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // await axios.put(`http://localhost:/api/furniture/update/${id}`, data, {
+      //   headers: { "Content-Type": "multipart/form-data" },
+      // });
+      await api.put(`/api/furniture/update/${id}`, data, {
+  headers: { "Content-Type": "multipart/form-data" },
+});
 
       setMessage({ type: "success", text: "Furniture updated successfully!" });
       setTimeout(() => navigate("/furniture/list"), 1200);
