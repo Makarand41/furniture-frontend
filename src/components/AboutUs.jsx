@@ -200,7 +200,7 @@
 //++++++++++++++++++++++++++++++++
 import React from 'react';
 import styles from './AboutUs.module.css';
-
+import ownerImage from '../assets/owner1.jpg';
 const AboutUs = () => {
   const values = [
     {
@@ -252,7 +252,7 @@ const AboutUs = () => {
             <div className="lg:w-1/3">
               <div className="rounded-lg overflow-hidden shadow-2xl">
                 <img 
-                  src="/src/assets/owner1.jpg" 
+                  src={ownerImage}
                   alt="Santosh Nimgade - Owner"
                   className="w-full h-96 object-cover"
                 />
