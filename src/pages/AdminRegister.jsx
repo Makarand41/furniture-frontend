@@ -227,7 +227,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./AdminRegister.module.css";
-
+import api from "../api";
 const AdminRegister = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [error, setError] = useState("");
@@ -275,9 +275,12 @@ const AdminRegister = () => {
     }
 
     try {
-      await axios.post("http://localhost:8081/api/admin/register", form, {
-        headers: { "Content-Type": "application/json" },
-      });
+      // await axios.post("http://localhost:8081/api/admin/register", form, {
+      //   headers: { "Content-Type": "application/json" },
+      // });
+      await api.post("/api/admin/register", form, {
+  headers: { "Content-Type": "application/json" },
+});
 
       toast.success("🎉 Registration successful! Redirecting...", {
         position: "top-center",

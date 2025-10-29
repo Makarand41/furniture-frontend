@@ -8,6 +8,8 @@ import Footer from '../components/Footer'
 import ScrollToTopButton from '../components/ScrollToTopButton'
 import FurnitureGrid from '../components/FurnitureGrid'
 import ProductsWithSidebar from '../components/ProductsWithSidebar'
+import Testimonials from '../components/Testimonials '
+
 // import HomeBoxA from '../components/HomeBoxA'
 
 const Home = () => {
@@ -21,6 +23,8 @@ const Home = () => {
      <FeaturedCollections/>
      <NoticeBar/>
      <PromoSplit/>
+     <Testimonials/> 
+   
      <Footer/>
      <ScrollToTopButton/>
     </>

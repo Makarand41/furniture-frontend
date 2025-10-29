@@ -68,13 +68,22 @@ const Header = () => {
   return (
     <header className="w-full h-[96px] bg-[#FAF5F2] fixed top-0 left-0 z-50 shadow-md flex items-center justify-between px-6">
       {/* Logo */}
-      <div className="flex items-center">
+      {/* <div className="flex items-center">
         <img
-          src="/Logo.jpg"
+          src="/Logo3.png"
           alt="Logo"
-          className="h-8 w-auto object-contain md:h-8 lg:h-8" // ✅ fixed size scaling
+          className="h-8 w-auto object-contain md:h-8 lg:h-20" // ✅ fixed size scaling
         />
-      </div>
+      </div> */}
+
+      <div className="flex items-center">
+  <img
+    src="/Logo3.png"
+    alt="Logo"
+    className="h-20 w-20 object-contain md:h-20 md:w-24 lg:h-20 lg:w-48"
+  />
+</div>
+
 
       {/* Hamburger (mobile) */}
       <div className="md:hidden">
@@ -84,7 +93,7 @@ const Header = () => {
       </div>
 
       {/* Navigation */}
-      <nav
+      {/* <nav
         className={`absolute md:static top-[96px] left-0 w-full md:w-auto bg-[#FAF5F2] md:bg-transparent transition-all duration-300 ease-in-out 
         ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} md:opacity-100 md:visible`}
       >
@@ -113,7 +122,51 @@ const Header = () => {
             </li>
           ))}
         </ul>
-      </nav>
+      </nav> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <nav
+  className={`absolute md:static top-[96px] left-0 w-full md:w-auto bg-[#FAF5F2] md:bg-transparent transition-all duration-300 ease-in-out 
+  ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} md:opacity-100 md:visible`}
+>
+  <ul className="flex flex-col md:flex-row md:items-center gap-6 p-6 md:p-0 text-lg font-medium text-center md:text-left">
+    {[
+      { path: "/", label: "Home" },
+      { path: "/furniture/Products", label: "Products" },
+      { path: "/furniture/About", label: "About" },
+      { path: "/furniture/Contact", label: "Contact" },
+    ].map(({ path, label }) => (
+      <li key={path}>
+        <NavLink
+          to={path}
+          end={path === "/"}
+          className={({ isActive }) =>
+            `block transition-colors ${
+              isActive
+                ? "text-[#df7c0b] underline font-semibold"
+                : "hover:text-[#df7c0b] hover:underline"
+            }`
+          }
+          onClick={() => setIsOpen(false)}
+        >
+          {label}
+        </NavLink>
+      </li>
+    ))}
+  </ul>
+</nav>
+
     </header>
   );
 };
