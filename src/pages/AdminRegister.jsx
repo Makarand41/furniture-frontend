@@ -52,7 +52,7 @@
 //     }
 
 //     try {
-//       await axios.post("http://localhost:8081/api/admin/register", form, {
+//       await axios.post("http://localhost:8080/api/admin/register", form, {
 //         headers: { "Content-Type": "application/json" },
 //       });
 
@@ -275,7 +275,7 @@ const AdminRegister = () => {
     }
 
     try {
-      // await axios.post("http://localhost:8081/api/admin/register", form, {
+      // await axios.post("http://localhost:8080/api/admin/register", form, {
       //   headers: { "Content-Type": "application/json" },
       // });
       await api.post("/api/admin/register", form, {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import api from "../api";
 const DeleteFurniture = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -10,7 +10,8 @@ const DeleteFurniture = () => {
     const confirmDelete = async () => {
       const confirm = window.confirm("Are you sure you want to delete this furniture?");
       if (confirm) {
-        await axios.delete(`http://localhost:8081/api/furniture/delete/${id}`);
+        // await axios.delete(`http://localhost:8080/api/furniture/delete/${id}`);
+        await api.delete(`/api/furniture/delete/${id}`);
         alert("Furniture deleted successfully!");
         navigate("/furniture/list");
       } else {

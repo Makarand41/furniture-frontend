@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import api from "../api";
 const buildImageUrl = (path) => {
   if (!path) return null;
   const cleaned = path.replace(/^\/+/, "");
-  return `http://localhost:8081/${cleaned}`;
+  // return `http://localhost:8080/${cleaned}`;
+  return `https://furniture-backend-docker-production.up.railway.app/${cleaned}`;
+
 };
 
 export default function FurnitureGrid() {
@@ -14,7 +16,8 @@ export default function FurnitureGrid() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://localhost:8081/api/furniture/all");
+        // const res = await axios.get("http://localhost:8080/api/furniture/all");
+        const res = await api.get("/api/furniture/all");
         setItems(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Fetch error:", err);

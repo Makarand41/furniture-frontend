@@ -12,7 +12,7 @@
 
 //   const fetchFurniture = async () => {
 //     try {
-//       const res = await axios.get(`http://localhost:8081/api/furniture/${id}`);
+//       const res = await axios.get(`http://localhost:8080/api/furniture/${id}`);
 //       setFurniture(res.data);
 //     } catch (error) {
 //       console.error("Error fetching furniture:", error);
@@ -35,7 +35,7 @@
 //         <div>
 //           <h4>Main Image:</h4>
 //           <img
-//             src={`http://localhost:8081/${furniture.image.replace(/^\/+/, "")}`}
+//             src={`http://localhost:8080/${furniture.image.replace(/^\/+/, "")}`}
 //             alt="Main"
 //             width="300"
 //           />
@@ -48,7 +48,7 @@
 //           {furniture.images.map((img) => (
 //             <img
 //               key={img.id}
-//               src={`http://localhost:8081/${img.image.replace(/^\/+/, "")}`}
+//               src={`http://localhost:8080/${img.image.replace(/^\/+/, "")}`}
 //               alt="Additional"
 //               width="150"
 //               style={{ marginRight: "10px" }}
@@ -65,7 +65,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "./ViewFurniture.module.css";
-
+import api from "../api";
 const ViewFurniture = () => {
   const { id } = useParams();
   const [furniture, setFurniture] = useState(null);
@@ -79,7 +79,8 @@ const ViewFurniture = () => {
 
   const fetchFurniture = async () => {
     try {
-      const res = await axios.get(`http://localhost:8081/api/furniture/${id}`);
+      //const res = await axios.get(`http://localhost:8080/api/furniture/${id}`);
+      const res = await api.get(`/api/furniture/${id}`);
       setFurniture(res.data);
     } catch (error) {
       console.error("Error fetching furniture:", error);
@@ -91,7 +92,9 @@ const ViewFurniture = () => {
   const buildImageUrl = (path) => {
     if (!path) return null;
     const cleaned = path.replace(/^\/+/, "");
-    return `http://localhost:8081/${cleaned}`;
+    // return `http://localhost:8080/${cleaned}`;
+    return `https://furniture-backend-docker-production.up.railway.app/${cleaned}`;
+
   };
 
   const getImageArray = () => {

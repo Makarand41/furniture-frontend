@@ -1,7 +1,7 @@
 // src/components/CategorySidebar.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import api from "../api";
 export default function CategorySidebar({
   selectedCategories,
   onChangeSelectedCategories,
@@ -14,7 +14,8 @@ export default function CategorySidebar({
     let mounted = true;
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:8081/api/category/all");
+        // const res = await axios.get("http://localhost:8080/api/category/all");
+        const res = await api.get("/api/category/all");
         if (!mounted) return;
         setCategories(Array.isArray(res.data) ? res.data : []);
       } catch (err) {

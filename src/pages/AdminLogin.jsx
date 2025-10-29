@@ -19,7 +19,7 @@
 //     setError("");
 
 //     try {
-//       const res = await axios.post("http://localhost:8081/api/admin/login", form, {
+//       const res = await axios.post("http://localhost:8080/api/admin/login", form, {
 //         headers: { "Content-Type": "application/json" },
 //       });
 
@@ -184,7 +184,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./AdminLogin.module.css";
-
+import api from "../api";
 const AdminLogin = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -199,9 +199,12 @@ const AdminLogin = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:8081/api/admin/login", form, {
-        headers: { "Content-Type": "application/json" },
-      });
+      // const res = await axios.post("http://localhost:8080/api/admin/login", form, {
+      //   headers: { "Content-Type": "application/json" },
+      // });
+      const res = await api.post("/api/admin/login", form, {
+  headers: { "Content-Type": "application/json" },
+});
 
       localStorage.setItem("admin", JSON.stringify(res.data));
 

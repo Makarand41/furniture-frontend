@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./AdminViewProduct.module.css";
-
+import api from "../api";
 const AdminViewProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -16,7 +16,8 @@ const AdminViewProduct = () => {
 
   const fetchFurniture = async () => {
     try {
-      const res = await axios.get(`http://localhost:8081/api/furniture/${id}`);
+     // const res = await axios.get(`http://localhost:8080/api/furniture/${id}`);
+      const res = await api.get(`/api/furniture/${id}`);
       setFurniture(res.data);
     } catch (error) {
       console.error("Error fetching furniture:", error);
@@ -28,7 +29,9 @@ const AdminViewProduct = () => {
   const buildImageUrl = (path) => {
     if (!path) return null;
     const cleaned = path.replace(/^\/+/, "");
-    return `http://localhost:8081/${cleaned}`;
+   // return `http://localhost:8080/${cleaned}`;
+    return `https://furniture-backend-docker-production.up.railway.app/${cleaned}`;
+
   };
 
   const getImageArray = () => {

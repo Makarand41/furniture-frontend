@@ -24,7 +24,7 @@
 //   }, []);
 
 //   const fetchFurniture = async () => {
-//     const res = await axios.get(`http://localhost:8081/api/furniture/${id}`);
+//     const res = await axios.get(`http://localhost:8080/api/furniture/${id}`);
 //     setForm({
 //       name: res.data.name,
 //       description: res.data.description || "",
@@ -52,7 +52,7 @@
 //     if (image) data.append("image", image);
 //     for (const img of images) data.append("images", img);
 
-//     await axios.put(`http://localhost:8081/api/furniture/update/${id}`, data, {
+//     await axios.put(`http://localhost:8080/api/furniture/update/${id}`, data, {
 //       headers: { "Content-Type": "multipart/form-data" },
 //     });
 
@@ -90,7 +90,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import api from "../api";
 const EditFurniture = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -116,7 +116,8 @@ const EditFurniture = () => {
 
   const fetchFurniture = async () => {
     try {
-      const res = await axios.get(`http://localhost:8081/api/furniture/${id}`);
+     // const res = await axios.get(`http://localhost:8080/api/furniture/${id}`);
+      const res = await api.get(`/api/furniture/${id}`);
       setForm({
         name: res.data.name,
         description: res.data.description || "",
@@ -135,7 +136,8 @@ const EditFurniture = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:8081/api/category/all");
+      //const res = await axios.get("http://localhost:8080/api/category/all");
+      const res = await api.get("/api/category/all");
       setCategories(res.data);
     } catch (err) {
       console.error("Error fetching categories:", err);
@@ -154,7 +156,7 @@ const EditFurniture = () => {
     for (const img of images) data.append("images", img);
 
     try {
-      await axios.put(`http://localhost:8081/api/furniture/update/${id}`, data, {
+      await axios.put(`http://localhost:/api/furniture/update/${id}`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

@@ -6,7 +6,7 @@
 // const buildImageUrl = (path) => {
 //   if (!path) return null;
 //   const cleaned = path.replace(/^\/+/, "");
-//   return `http://localhost:8081/${cleaned}`;
+//   return `http://localhost:8080/${cleaned}`;
 // };
 
 // export default function ProductsWithSidebar() {
@@ -19,7 +19,7 @@
 //     let mounted = true;
 //     const fetchData = async () => {
 //       try {
-//         const res = await axios.get("http://localhost:8081/api/furniture/all", {
+//         const res = await axios.get("http://localhost:8080/api/furniture/all", {
 //           timeout: 6000,
 //         });
 //         if (mounted) {
@@ -234,17 +234,18 @@
 //     </div>
 //   );
 // };
-
+import api from "../api";
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import CategorySidebar from "./CategorySidebar";
 import styles from "./ProductsWithSidebar.module.css";
-
 const buildImageUrl = (path) => {
   if (!path) return null;
   const cleaned = path.replace(/^\/+/, "");
-  return `http://localhost:8081/${cleaned}`;
+  // return `http://localhost:8080/${cleaned}`;
+  return `https://furniture-backend-docker-production.up.railway.app/${cleaned}`;
+
 };
 
 export default function ProductsWithSidebar() {
@@ -257,13 +258,14 @@ export default function ProductsWithSidebar() {
   useEffect(() => {
     let mounted = true;
     const fetchData = async () => {
-      try {
-        const res = await axios.get("http://localhost:8081/api/furniture/all", {
-          timeout: 6000,
-        });
-        if (mounted) {
-          setItems(Array.isArray(res.data) ? res.data : []);
-        }
+      //const res = await axios.get("http://localhost:8080/api/furniture/all", 
+     try {
+  const res = await api.get("/api/furniture/all", {
+    timeout: 6000,
+  });
+  if (mounted) {
+    setItems(Array.isArray(res.data) ? res.data : []);
+  }
       } catch (err) {
         console.error("Failed to load products", err);
         if (mounted) setItems([]);

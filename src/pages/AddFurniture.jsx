@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddFurniture.module.css";
-
+import api from "../api";
 const AddFurniture = () => {
   const [form, setForm] = useState({
     name: "",
@@ -27,7 +27,8 @@ const AddFurniture = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:8081/api/category/all");
+      //const res = await axios.get("http://localhost:8080/api/category/all");
+      const res = await api.get("/api/category/all");
       setCategories(res.data);
     } catch {
       setCategories([]);
@@ -54,9 +55,14 @@ const AddFurniture = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:8081/api/category/add", {
-        name: newCategory,
-      });
+      // const res = await axios.post("http://localhost:8080/api/category/add", {
+      //   name: newCategory,
+      // });
+
+      const res = await api.post("/api/category/add", {
+  name: newCategory,
+});
+
       setNewCategory("");
       setShowNewCategory(false);
       await fetchCategories();
@@ -80,7 +86,9 @@ const AddFurniture = () => {
       if (image) data.append("image", image);
       for (const img of images) data.append("images", img);
 
-      await axios.post("http://localhost:8081/api/furniture/add", data);
+      //await axios.post("http://localhost:8080/api/furniture/add", data);
+
+      await api.post("/api/furniture/add", data);
 
       setMessage({ type: "success", text: "Furniture added successfully!" });
       setForm({

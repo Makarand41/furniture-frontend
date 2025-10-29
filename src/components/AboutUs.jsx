@@ -252,7 +252,7 @@ const AboutUs = () => {
             <div className="lg:w-1/3">
               <div className="rounded-lg overflow-hidden shadow-2xl">
                 <img 
-                  src="/src/assets/owner.jpeg" 
+                  src="/src/assets/owner1.jpg" 
                   alt="Santosh Nimgade - Owner"
                   className="w-full h-96 object-cover"
                 />

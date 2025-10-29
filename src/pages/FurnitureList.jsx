@@ -11,7 +11,7 @@
 
 //   const fetchFurnitures = async () => {
 //     try {
-//       const res = await axios.get("http://localhost:8081/api/furniture/all");
+//       const res = await axios.get("http://localhost:8080/api/furniture/all");
 //       setFurnitures(res.data);
 //     } catch (err) {
 //       console.error("Error fetching furniture:", err);
@@ -26,7 +26,7 @@
 //     if (!confirm) return;
 
 //     try {
-//       await axios.delete(`http://localhost:8081/api/furniture/delete/${id}`);
+//       await axios.delete(`http://localhost:8080/api/furniture/delete/${id}`);
 //       alert("Furniture deleted successfully!");
 //       setFurnitures((prev) => prev.filter((f) => f.id !== id)); // update UI instantly
 //     } catch (err) {
@@ -67,7 +67,7 @@
 //                   <td style={tdStyle}>
 //                     {item.image && (
 //                       <img
-//                         src={`http://localhost:8081/${item.image.replace(/^\/+/, "")}`}
+//                         src={`http://localhost:8080/${item.image.replace(/^\/+/, "")}`}
 //                         alt={item.name}
 //                         style={{
 //                           width: "80px",
@@ -146,7 +146,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaTrash, FaEdit, FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import api from "../api";
 const FurnitureList = () => {
   const [furnitures, setFurnitures] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -158,7 +158,8 @@ const FurnitureList = () => {
 
   const fetchFurnitures = async () => {
     try {
-      const res = await axios.get("http://localhost:8081/api/furniture/all");
+     // const res = await axios.get("http://localhost:8080/api/furniture/all");
+     const res = await api.get("/api/furniture/all");
       setFurnitures(res.data);
     } catch (err) {
       console.error("Error fetching furniture:", err);
@@ -173,7 +174,8 @@ const FurnitureList = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:8081/api/furniture/delete/${id}`);
+      //await axios.delete(`http://localhost:8080/api/furniture/delete/${id}`);
+      await api.delete(`/api/furniture/delete/${id}`);
       alert("✅ Furniture deleted successfully!");
       setFurnitures((prev) => prev.filter((f) => f.id !== id));
     } catch (err) {
@@ -234,7 +236,9 @@ const FurnitureList = () => {
                     <td className="px-6 py-3">
                       {item.image ? (
                         <img
-                          src={`http://localhost:8081/${item.image.replace(/^\/+/, "")}`}
+                          //src={`http://localhost:8080/${item.image.replace(/^\/+/, "")}`}
+                          src={`https://furniture-backend-docker-production.up.railway.app/${item.image.replace(/^\/+/, "")}`}
+
                           alt={item.name}
                           className="w-16 h-16 object-cover rounded-md border"
                         />
