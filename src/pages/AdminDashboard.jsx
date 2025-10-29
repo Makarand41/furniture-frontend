@@ -45,7 +45,7 @@ const AdminDashboard = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 justify-center">
             <button
               onClick={() => navigate("/admin/add-furniture")}
-              className="bg-amber-800 hover:bg-amber-900 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-lg shadow-md font-semibold transition-transform transform hover:-translate-y-1 text-sm sm:text-base w-full"
+              className="bg-gray-900 hover:bg-black text-white px-4 sm:px-6 py-3 sm:py-4 rounded-lg shadow-md font-semibold transition-transform transform hover:-translate-y-1 text-sm sm:text-base w-full"
             >
               ➕ Add New Furniture
             </button>
@@ -56,6 +56,15 @@ const AdminDashboard = () => {
             >
               📋 View Furniture List
             </button>
+
+          <button
+    onClick={() => navigate("/furniture/stock")}
+    className="bg-gray-900 hover:bg-black text-white px-4 sm:px-6 py-3 sm:py-4 rounded-lg shadow-md font-semibold transition-transform transform hover:-translate-y-1 text-sm sm:text-base w-full"
+  >
+    📦 Order Tracking
+  </button>
+
+
           </div>
         </div>
       </main>
